@@ -34,20 +34,62 @@ public class FS_AP9_MinSteps {
     
 }
 
+// MinStepcal(n);
+
+// Base case: if n is 1, no operations needed.
+
+// Even case: divide by 2.
+
+// Odd case: choose the minimum steps.
+
+// Store result to avoid redundant calculations.
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
-class MinSteps{
-    public static int MinStepcal(int n){
-        if(n==1) return 0;
-        if((n & 1)==0) return  1 + MinStepcal(n/2);
-        return 1 + Math.min(MinStepcal(n+1),MinStepcal(n-1));
+import java.util.Set;
+
+class MinStepsBFS {
+    public static int MinStepcal(int n) {
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+        queue.add(n);
+        visited.add(n);
+        int steps = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int num = queue.poll();
+                if (num == 1) return steps;
+
+                if (num % 2 == 0) {
+                    if (!visited.contains(num / 2)) {
+                        queue.add(num / 2);
+                        visited.add(num / 2);
+                    }
+                } else {
+                    if (!visited.contains(num + 1)) {
+                        queue.add(num + 1);
+                        visited.add(num + 1);
+                    }
+                    if (!visited.contains(num - 1)) {
+                        queue.add(num - 1);
+                        visited.add(num - 1);
+                    }
+                }
+            }
+            steps++;
+        }
+        return -1; // Should never reach here
     }
-    
-    
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        // MinStepcal(n);
         System.out.println(MinStepcal(n));
+        sc.close();
     }
 }
