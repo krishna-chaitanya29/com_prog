@@ -44,3 +44,38 @@ Auxiliary Space:  O(1).
 public class CP_U1_SP7_Valid_Word_Abbreviation {
     
 }
+import java.util.Scanner;
+
+public class ValidAbbreviation {
+    public static boolean isValidAbbreviation(String s, String abbr) {
+        int i = 0, j = 0;
+        
+        while (i < s.length() && j < abbr.length()) {
+            if (Character.isLetter(abbr.charAt(j))) { 
+                // Direct character match
+                if (s.charAt(i) != abbr.charAt(j)) return false;
+                i++;
+                j++;
+            } else { 
+                // Number handling
+                if (abbr.charAt(j) == '0') return false; // No leading zeros allowed
+                
+                int num = 0;
+                while (j < abbr.length() && Character.isDigit(abbr.charAt(j))) {
+                    num = num * 10 + (abbr.charAt(j) - '0');
+                    j++;
+                }
+                i += num; // Skip these many characters in `s`
+            }
+        }
+        
+        return i == s.length() && j == abbr.length(); // Both should reach the end together
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        String abbr = sc.next();
+        System.out.println(isValidAbbreviation(s, abbr));
+    }
+}
