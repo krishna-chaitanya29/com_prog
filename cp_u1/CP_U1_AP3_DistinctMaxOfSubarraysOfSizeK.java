@@ -55,6 +55,51 @@ Only one subarray of length 3 exists: [7,7,7], but it contains repeated elements
 Since no valid subarray exists, return 0.
 
  */
+import java.util.*;
 public class CP_U1_AP3_DistinctMaxOfSubarraysOfSizeK {
+    public static int getMax(int[] arr,int k){
+        int cSum = 0 , maxSum = 0;
+        Map<Integer,Integer> map = new HashMap<>();
+        int left = 0;
+        for (int i = 0; i < arr.length; i++) {
+            cSum += arr[i];
+            map.put(arr[i],map.getOrDefault(arr[i], 0) +1);
+            while(map.get(arr[i])>1){
+                cSum-=arr[left];
+                map.put(arr[left],map.getOrDefault(arr[left], 0)-1);
+                if(map.get(arr[left])==0) map.remove(arr[left]);
+                left ++;
+            }
+
+
+            if(i-left+1==k){
+
+                maxSum = Math.max(maxSum,cSum);
+                cSum-=arr[left];
+                map.put(arr[left],map.getOrDefault(arr[left], 0)-1);
+                if(map.get(arr[left])==0) map.remove(arr[left]);
+                left ++;
+
+            }
+
+        }
+
+
+
+
+
+    return maxSum;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter:");
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(getMax(arr,k));
+    }
     
 }
