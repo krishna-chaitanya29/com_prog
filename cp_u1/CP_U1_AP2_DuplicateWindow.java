@@ -35,48 +35,74 @@ Sample Output-2:
 true
  */
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+// public class CP_U1_AP2_DuplicateWindow {
+//     public static boolean moveOn(int[] arr, List<Integer> list, Set<Integer> set, int k) {
+//         for (int i = k; i < arr.length; i++) {
+//             set.clear();
+//             list.remove(0);
+//             list.add(arr[i]);
+//             for (int num : list) {
+//                 set.add(num);
+//             }
+//             if (set.size() != k) return true;
+//         }
+//         return false;
+//     }
 
-public class CP_U1_AP2_DuplicateWindow {
-    public static boolean moveOn(int[] arr, List<Integer> list, Set<Integer> set, int k) {
-        for (int i = k; i < arr.length; i++) {
-            set.clear();
-            list.remove(0);
-            list.add(arr[i]);
-            for (int num : list) {
-                set.add(num);
+//     public static void main(String[] args) {
+//         Scanner sc = new Scanner(System.in);
+//         int n = sc.nextInt();
+//         int[] arr = new int[n];
+//         for (int i = 0; i < n; i++) {
+//             arr[i] = sc.nextInt();
+//         }
+//         int k = sc.nextInt();
+//         List<Integer> list = new ArrayList<>();
+//         Set<Integer> set = new HashSet<>();
+//         for (int i = 0; i < k; i++) {
+//             list.add(arr[i]);
+//         }
+//         for (int num : list) {
+//             set.add(num);
+//         }
+//         boolean result = false;
+//         if (set.size() != k) {
+//             result = true;
+//         } else {
+//             result = moveOn(arr, list, set, k);
+//         }
+//         System.out.println(result);
+//     }
+// }
+
+
+import java.util.*;
+public class CP_U1_AP2_DuplicateWindow{
+    public static boolean check(int[] arr,int n,int k){
+        Map<Integer ,Integer> map = new HashMap<>();
+        int rev = 0;
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i] , map.getOrDefault(arr[i],0)+1);
+            rev++;
+            if(map.get(arr[i])>1) return true;
+            if(rev==k){
+                rev = 0;
+                map.put(arr[i-k+1] , map.getOrDefault(arr[i-k+1],0)-1);
+                if(map.get(arr[i-k+1])==0) map.remove(arr[i-k+1]);
             }
-            if (set.size() != k) return true;
         }
+
+
         return false;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = sc.nextInt();
         }
         int k = sc.nextInt();
-        List<Integer> list = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < k; i++) {
-            list.add(arr[i]);
-        }
-        for (int num : list) {
-            set.add(num);
-        }
-        boolean result = false;
-        if (set.size() != k) {
-            result = true;
-        } else {
-            result = moveOn(arr, list, set, k);
-        }
-        System.out.println(result);
+        System.out.println(check(arr,n,k));
     }
 }

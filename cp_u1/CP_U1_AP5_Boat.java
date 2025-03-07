@@ -65,9 +65,41 @@ Total boats required: 4.
 
  */
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
+// public class CP_U1_AP5_Boat {
+//     public static void main(String[] args) {
+//         Scanner sc = new Scanner(System.in);
+//         int n = sc.nextInt();
+//         int[] arr = new int[n];
+//         for (int i = 0; i < arr.length; i++) {
+//             arr[i] = sc.nextInt();
+//         }
+//         int cap = sc.nextInt();
+//         Arrays.sort(arr);
+//         int boat = 0;
+//         int sum = 0;
+//         for(int i = 0; i < arr.length; i++) {
+//             sum = arr[i];
+//             if(sum<cap){
+//                 int j = i;
+//                 while(j<n){
+//                     sum+=arr[j];
+//                     if(sum>cap){
+//                         break;
+//                     }
+//                     else boat++;
+                    
+//                 }
+//                 boat++;
+//             }
+//         }
+//         System.out.println(boat);
+//     }
+// }
 public class CP_U1_AP5_Boat {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -75,25 +107,19 @@ public class CP_U1_AP5_Boat {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = sc.nextInt();
         }
-        int cap = sc.nextInt();
+        int k = sc.nextInt();
+        int weight = 0;
+        int boats = 0;
         Arrays.sort(arr);
-        int boat = 0;
-        int sum = 0;
-        for(int i = 0; i < arr.length; i++) {
-            sum = arr[i];
-            if(sum<cap){
-                int j = i;
-                while(j<n){
-                    sum+=arr[j];
-                    if(sum>cap){
-                        break;
-                    }
-                    else boat++;
-                    
-                }
-                boat++;
+        for (int i = 0; i < arr.length; i++) {
+            weight+=arr[i];
+            while( i+1<n && (weight+=arr[i+1])<=k ){
+                ++i;
+                weight+=arr[i];
             }
+            weight = 0;
+            boats++;
         }
-        System.out.println(boat);
+        System.out.println(boats);
     }
 }
