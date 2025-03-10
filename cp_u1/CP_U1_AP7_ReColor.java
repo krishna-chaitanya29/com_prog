@@ -71,10 +71,9 @@ public class CP_U1_AP7_ReColor {
                 c_min++;
             }
             if(count==k){
-                i = i-k+1;
-                count = 0;
                 min = Math.min(min,c_min);
-                c_min = 0;
+                if(s.charAt(i-k+1)=='W') c_min--;
+                count--;
             }
             
         }
