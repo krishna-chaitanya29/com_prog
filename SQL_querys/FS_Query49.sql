@@ -8,3 +8,5 @@ Expected Output Columns:
 
 */
 USE test;
+
+SELECT sum(comm) as total_comm_low_salary FROM emp WHERE sal < 1500;

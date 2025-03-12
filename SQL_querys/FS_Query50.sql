@@ -8,3 +8,5 @@ Expected Output Columns:
 
 */
 USE test;
+
+SELECT ename,sal,comm  FROM emp WHERE sal > 2500 and comm is null ;
