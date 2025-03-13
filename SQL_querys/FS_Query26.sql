@@ -8,3 +8,7 @@ Expected Output Columns:
 
 */
 USE test;
+SELECT DISTINCT d.deptno, d.dname
+FROM dept d
+JOIN emp e ON d.deptno = e.deptno
+WHERE e.sal > 3000;
