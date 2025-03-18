@@ -52,6 +52,40 @@ Sample Output-2:
 
  */
 
+import java.util.*;
+
+
 public class FS_AP2_Distinct_Shapes {
-    
+    public static void dfs(int[][] grid , boolean[][] v , int br , int bc , int i , int j , List<String> list){
+        if(i<0 || j<0 || i>=grid.length || j>=grid.length || v[i][j] || grid[i][j]==0 ) return;
+        v[i][j] = true;
+        list.add((i-br)+":"+(j-bc));
+        dfs(grid , v,br,bc,i+1,j,list);
+        dfs(grid , v,br,bc,i-1,j,list);
+        dfs(grid , v,br,bc,i,j+1,list);
+        dfs(grid , v,br,bc,i,j-1,list);
+
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int r = sc.nextInt();
+        int c = sc.nextInt();
+        int[][] grid = new int[r][c];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                grid[i][j] = sc.nextInt();
+            }
+        }
+        boolean[][] v = new boolean[r][c];
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if(grid[i][j] == 1 && !v[i][j]){
+                    List<String> list = new ArrayList<>();
+                    dfs(grid,v,i,j,i,j,list);
+                    set.add(String.join(",", list));
+                }
+            }
+        }
+    }
 }

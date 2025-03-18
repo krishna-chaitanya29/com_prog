@@ -4,7 +4,7 @@
 USE Test;
 
 /* current database */
-SELECT DATABASE();
+-- SELECT DATABASE();
 
 DROP DATABASE IF EXISTS test;
 CREATE DATABASE test;

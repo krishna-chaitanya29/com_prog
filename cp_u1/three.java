@@ -1,18 +1,29 @@
-import java.util.*;
+import java.util.Scanner;
 
 class three {
-    void m(){
-        System.out.println("method ");
-    }
     public static void main(String[] args) {
-        int[] a , b;
-        a = new int[3];
-        b = new int[2];
-        System.out.print(Arrays.toString(a));
-        
-        three[] obj = new three[5];
-        obj[0].m();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int k= sc.nextInt();;
 
-        System.out.print(Arrays.toString(a));
+        int minutes = 0,left=0;
+        int min =  0;
+        for (int i = 0; i < arr.length; i++) {
+            minutes+=arr[i];
+            while(minutes>k ){
+                min = Math.max(min, i-left+1);
+                minutes-=arr[left];
+                left++;
+            }
+            min = Math.max(min, i-left+1);
+            
+            
+        }
+        System.out.println(min);
     }
+    
 }

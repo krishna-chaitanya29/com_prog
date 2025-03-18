@@ -22,3 +22,46 @@ Sample Output-2:
 Kashivmomerael
 
  */
+
+import java.util.Scanner;
+
+
+public class CP_U1_AP14_Reverse_Vowels {
+    // Helper method to check if a character is a vowel
+    public static boolean isVowel(char c) {
+        return "AEIOUaeiou".indexOf(c) != -1;
+    }
+
+    // Swap method to swap characters in a char array
+    public static void swap(char[] s, int l, int r) {
+        char temp = s[l];
+        s[l] = s[r];
+        s[r] = temp;
+    }
+
+    // Method to reverse vowels in a string
+    public static String reverse(String s) {
+        char[] chars = s.toCharArray();
+        int left = 0, right = chars.length - 1;
+        while (left < right) {
+            while (left < right && !isVowel(chars[left])) {
+                left++;
+            }
+            while (left < right && !isVowel(chars[right])) {
+                right--;
+            }
+            if (left < right) {
+                swap(chars, left, right);
+                left++;
+                right--;
+            }
+        }
+        return new String(chars);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        System.out.println(reverse(s));
+    }
+}
