@@ -8,3 +8,4 @@ JOIN and GROUP BY.
 */
 USE test; 
 
+SELECT d.deptno, d.dname, AVG(e.sal) AS avg_salary FROM emp e INNER JOIN dept d ON e.deptno = d.deptno GROUP BY d.deptno, d.dname;

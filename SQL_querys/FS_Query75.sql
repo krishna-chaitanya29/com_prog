@@ -7,6 +7,6 @@ a self-join.
 */
 USE test; 
 
-select e.ename as manager from emp e
-join emp m on m.empno = e.mgr;
+select distinct  m.ename as manager from emp m
+join emp e on m.empno = e.mgr ;
 

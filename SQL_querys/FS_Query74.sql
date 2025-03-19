@@ -7,3 +7,10 @@ departments, including unmatched rows.
 */
 USE test; 
 
+select e.empno,e.ename,d.deptno,d.dname from emp e 
+left join dept d on e.deptno = d.deptno
+
+union 
+
+select e.empno,e.ename,d.deptno,d.dname from emp e 
+right join dept d on e.deptno = d.deptno;

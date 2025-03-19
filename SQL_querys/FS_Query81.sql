@@ -7,3 +7,4 @@ department is in 'Chicago' using INNER JOIN.
 */
 USE test; 
 
+SELECT e.ename, d.dname FROM emp e INNER JOIN dept d ON e.deptno = d.deptno WHERE d.location = 'Chicago';

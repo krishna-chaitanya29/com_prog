@@ -7,3 +7,4 @@ hire date is after 1980 using INNER JOIN.
 */
 USE test; 
 
+SELECT e.ename, d.dname, e.hiredate FROM emp e INNER JOIN dept d ON e.deptno = d.deptno WHERE e.hiredate > '1980-01-01';

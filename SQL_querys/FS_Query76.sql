@@ -7,3 +7,5 @@ using CROSS JOIN.
 */
 USE test; 
 
+select e.ename,d.dname from emp e
+join dept d;
