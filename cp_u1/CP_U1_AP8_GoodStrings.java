@@ -31,22 +31,22 @@ There are 7 substrings of size 3: "aab", "aba", "bab", "abc", "bca", "cab", and 
 The good substrings are "abc", "bca", "cab", and "abc".
  */
 import java.util.*;
-public class CP_U1_AP8_GoodStrings {
+class CP_U1_AP8_GoodStrings {
     public static int getS(String s){
         Set<Character> set = new HashSet<>();
+        Set<String> cset = new HashSet<>();
         int left = 0;
         int max = 0;
         for (int right = 0; right < s.length(); right++) {
-            int count =0;
+            int rleft = left;
             while(set.contains(s.charAt(right))){
-                count++;
-                if(count==1) max++;
+                cset.add(s.substring(rleft,right));
                 set.remove(left);
                 left++;
             }
             set.add(s.charAt(right));
         }
-        return (max);
+        return (cset.size());
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
