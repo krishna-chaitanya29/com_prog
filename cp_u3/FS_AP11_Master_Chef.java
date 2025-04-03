@@ -67,3 +67,63 @@ Constraints:
 public class FS_AP11_Master_Chef {
     
 }
+import java.util.*;
+
+public class KitchenOrder {
+    public static List<Integer> findCookingOrder(int numDishes, int[][] dependencies) {
+        List<Integer> result = new ArrayList<>();
+        List<List<Integer>> graph = new ArrayList<>();
+        int[] inDegree = new int[numDishes];
+
+        // Initialize adjacency list
+        for (int i = 0; i < numDishes; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Build graph and in-degree array
+        for (int[] dep : dependencies) {
+            int X = dep[0], Y = dep[1];
+            graph.get(Y).add(X);
+            inDegree[X]++;
+        }
+
+        // Queue for processing dishes with no prerequisites
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numDishes; i++) {
+            if (inDegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+
+        // Process dishes in topological order
+        while (!queue.isEmpty()) {
+            int dish = queue.poll();
+            result.add(dish);
+            for (int nextDish : graph.get(dish)) {
+                inDegree[nextDish]--;
+                if (inDegree[nextDish] == 0) {
+                    queue.offer(nextDish);
+                }
+            }
+        }
+
+        // If we cannot process all dishes, return an empty list (cycle detected)
+        return result.size() == numDishes ? result : new ArrayList<>();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int numDishes = sc.nextInt();
+        int m = sc.nextInt();
+        int[][] dependencies = new int[m][2];
+
+        for (int i = 0; i < m; i++) {
+            dependencies[i][0] = sc.nextInt();
+            dependencies[i][1] = sc.nextInt();
+        }
+
+        List<Integer> order = findCookingOrder(numDishes, dependencies);
+        System.out.println(order);
+        sc.close();
+    }
+}
