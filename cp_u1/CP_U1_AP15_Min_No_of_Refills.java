@@ -69,3 +69,64 @@ Total refills = 2.
 public class CP_U1_AP15_Min_No_of_Refills {
     
 }
+import java.util.*;
+
+public class WaterServing {
+    public static int minRefills(int[] guests, int capacityA, int capacityB) {
+        int left = 0, right = guests.length - 1;
+        int waterA = capacityA, waterB = capacityB;
+        int refills = 0;
+
+        while (left <= right) {
+            // If both Andy and Berry meet at the same guest
+            if (left == right) {
+                if (waterA >= waterB) { // Andy serves if equal or more
+                    if (waterA < guests[left]) {
+                        waterA = capacityA; // Refill
+                        refills++;
+                    }
+                    waterA -= guests[left];
+                } else {
+                    if (waterB < guests[right]) {
+                        waterB = capacityB; // Refill
+                        refills++;
+                    }
+                    waterB -= guests[right];
+                }
+                break;
+            }
+
+            // Andy serves guest at `left`
+            if (waterA < guests[left]) {
+                waterA = capacityA; // Refill
+                refills++;
+            }
+            waterA -= guests[left];
+
+            // Berry serves guest at `right`
+            if (waterB < guests[right]) {
+                waterB = capacityB; // Refill
+                refills++;
+            }
+            waterB -= guests[right];
+
+            left++;
+            right--;
+        }
+
+        return refills;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] guests = new int[N];
+        for (int i = 0; i < N; i++) {
+            guests[i] = sc.nextInt();
+        }
+        int capacityA = sc.nextInt();
+        int capacityB = sc.nextInt();
+
+        System.out.println(minRefills(guests, capacityA, capacityB));
+    }
+}

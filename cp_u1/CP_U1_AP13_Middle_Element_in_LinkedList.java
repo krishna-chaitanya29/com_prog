@@ -32,12 +32,12 @@ Sample Output-2:
 
  */
 
-public class CP_U1_AP13_Middle_Element_in_LinkedList {
+// public class CP_U1_AP13_Middle_Element_in_LinkedList {
     
-}
+// }
 import java.io.*;
 import java.util.*;
-class MiddleElementLL{
+class CP_U1_AP13_Middle_Element_in_LinkedList{
 	Node head; 
 	
 	// Linked list node 
@@ -87,7 +87,7 @@ class MiddleElementLL{
 		sc.nextLine();
 		String list[]=sc.nextLine().split(" ");
 		
-		MiddleElementLL llist = new MiddleElementLL();
+		CP_U1_AP13_Middle_Element_in_LinkedList llist = new CP_U1_AP13_Middle_Element_in_LinkedList();
 		for (int i = 0; i < list.length; i++) {	
 			llist.push(Integer.parseInt(list[i]));
 			
