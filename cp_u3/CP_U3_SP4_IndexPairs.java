@@ -75,18 +75,18 @@ class Trie{
             c-='a';
             if(node.children[c]==null){
                 node.children[c]=new Trie();
-                }
-            node=node.children[c];
             }
+            node=node.children[c];
+        }
         node.isEnd=true;
-        }
-        }
+    }
+}
 class IndexPairs{
     public static int[][] indexPairs(String text,String[] words){
         Trie trie=new Trie();
         for(String w:words){
             trie.insert(w);
-}
+        }
         int n=text.length();
         List<int[]> ans=new ArrayList<>();
         for(int i=0;i<n;i++){
@@ -99,12 +99,12 @@ class IndexPairs{
                 node=node.children[idx];
                 if(node.isEnd){
                     ans.add(new int[]{i,j});
-                    }
+                }
             }
         }
         // System.out.println(ans);
         return ans.toArray(new int[ans.size()][2]);
-        }
+    }
     public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         String text=sc.nextLine();
@@ -113,9 +113,8 @@ class IndexPairs{
         for(int i=0;i<ans.length;i++){
             for(int j=0;j<ans[0].length;j++){
                 System.out.print(ans[i][j]+" ");
-                }
-            System.out.println();
             }
-}
-
+            System.out.println();
+        }
+    }
 }

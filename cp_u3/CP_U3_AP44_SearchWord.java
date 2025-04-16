@@ -42,7 +42,7 @@ Sample Output-2:
 public class CP_U3_AP44_SearchWord {
     
 }
-import java.io.*;
+import java.util.*;
 class Trie
 {
     static class TrieNode {
@@ -67,13 +67,32 @@ class Trie
             current = current.children[index];
         }
         current.isEndOfWord = true;
+        
     }
     
     //if any supporting functionalities, should go here
     
-    List search(String[] word) {
+    List<Boolean> search(String[] word) {
         //implement your code here and return list of boolean values
-        word.next = 
+        List<Boolean> ans=new ArrayList<>();
+        for(String w:word){
+            ans.add(search(w));
+        }
+        return ans;
+    }
+    boolean search(String word){
+        int level;
+        int length=word.length();
+        int index;
+        TrieNode curr=root;
+        for(level=0;level<length;level++){
+            index=word.charAt(level)-'a';
+            if(curr.children[index]==null){
+                return false;
+            }
+            curr=curr.children[index];
+        }
+        return curr.isEndOfWord;
     }
     
 }
@@ -84,13 +103,13 @@ class SearchList
         Trie trie = new Trie();
         int n = scanner.nextInt();
 		scanner.nextLine();
-		String[] word= scanner.nextLine().split(",");
+		String[] word= scanner.nextLine().split(" ");
         for (int i = 0; i < n; i++) {
             trie.insert(word[i]);
         }
         int m = scanner.nextInt();
 		scanner.nextLine();
-		String[] words = scanner.nextLine().split(",");
+		String[] words = scanner.nextLine().split(" ");
 		System.out.println(trie.search(words));
     }
 }
