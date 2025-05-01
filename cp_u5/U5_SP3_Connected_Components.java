@@ -1,6 +1,4 @@
-public class U5_SP3_Connected_Components {
-    
-}
+
 /*
  * There are N cities, and M routes[], each route is a path between two cities.
 routes[i] = [city1, city2], there is a travel route between city1 and city2.
@@ -49,3 +47,13 @@ Sample Output-2:
 ----------------
 1
  */
+import java.util.*;
+
+public class U5_SP3_Connected_Components {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        
+    }
+    
+}
