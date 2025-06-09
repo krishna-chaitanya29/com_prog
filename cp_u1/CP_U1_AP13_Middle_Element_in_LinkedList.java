@@ -76,7 +76,7 @@ class CP_U1_AP13_Middle_Element_in_LinkedList{
 	public void printList(){
 		Node tnode = head;
 		while (tnode != null) {
-			//System.out.print(tnode.data + "->");
+			System.out.print(tnode.data + "->");
 			tnode = tnode.next;
 		}
 		System.out.println("NULL");
@@ -92,7 +92,7 @@ class CP_U1_AP13_Middle_Element_in_LinkedList{
 			llist.push(Integer.parseInt(list[i]));
 			
 		}
-		//llist.printList();
+		llist.printList();
 		llist.printMiddle(val);	
 	}
 } 
